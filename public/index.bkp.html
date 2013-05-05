@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="google-site-verification" content="J2e4mPFc6wuNIb-N8drCstHS9rLGa6ucj85quiIGPp0" />
+        <meta name="keywords" content="istitch, Needlework, cross stitch, embroidery, stitching">
+        <meta name="author" content="Miroslav Magda, http://ejci.net">
+        <meta name="description" content="Picture to cross stitch converter. Convert any picture to cross stitch pattern with one click.">
+        <title>iStitch App</title>
+        <!-- Open Graph tags -->
+        <meta property="og:title" content="iStitch App" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="http://istitchapp.com" />
+        <meta property="og:description" content="Picture to cross stitch converter. Convert any picture to cross stitch pattern with one click." />
+        <meta property="og:image" content="http://istitchapp.com/img/og-image-app.png" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="160" />
+        <meta property="og:image:height" content="98" />
+        <style>
+			#app-loader {
+				width: 100%;
+				margin-top: 20%;
+				text-align: center;
+				font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+				font-size: 20px;
+				font-weight: bold;
+				line-height: 20px;
+				color: #222;
+			}
+			#app-loader img {
+				padding: 10px;
+				border: 0;
+			}
+			#app-desktop, #app-mobile {
+				display: none;
+			}
+			#app-temp {
+				display: none;
+			}
+        </style>
+    </head>
+    <body>
+        <!-- Desktop version -->
+        <div id="app-desktop">
+            <div class="container-narrow">
+                <!-- Navigation -->
+                <div class="content-navigation">
+                    <div class="masthead">
+                        <ul class="nav nav-pills pull-right">
+                            <li>
+                                <a href="#/FAQ">FAQ</a>
+                            </li>
+                            <li>
+                                <a href="#/Contact">Contact</a>
+                            </li>
+                        </ul>
+                        <a href="#/" class="brand muted"><h3>iStitch App</h3></a>
+                    </div>
+                    <hr>
+                </div>
+                <!-- Home content -->
+                <div class="content-home">
+                    <div class="jumbotron" id="marketing">
+                        <div id="examples">
+                            <img class="img img-circle img-polaroid example1" style="height: 220px;" src="/img/background-html5.png">
+                            <img class="img img-circle img-polaroid example2" style="height: 220px; display:none;" src="/img/background-reddit.png">
+                            <img class="img img-circle img-polaroid example3" style="height: 220px; display:none;" src="/img/background-tiger.png">
+                        </div>
+                        <h2>Picture to cross stitch converter</h2>
+                        <p class="lead">
+                            Convert any picture to cross stitch pattern with one click.
+                        </p>
+                    </div>
+                    <div class="jumbotron" id="result" style="display:none;">
+                        <div class="btn-group">
+                            <button class="btn btn-result" id="buttonOptions">
+                                <i class="icon-magic"></i> Options
+                            </button>
+                            <button class="btn btn-result" id="buttonDownload">
+                                <i class="icon-save"></i> Save
+                            </button>
+                            <button class="btn btn-result" id="buttonShare">
+                                <i class="icon-share"></i> Share
+                            </button>
+                        </div>
+                        <div id="resultCanvasShare">
+                            <br />
+                            <p>
+                                <label>URL for sharing</label>
+                                </label>
+                                <input class="input-xlarge" name="shareUrl" type="text" placeholder="Sharing URL" value="">
+                                <small>
+                                    <br/>
+                                    Copy the link and share with your friends</small>
+                            </p>
+                        </div>
+                        <p id="resultCanvas"></p>
+                        <p id="resultCanvasInfo"></p>
+                    </div>
+                    <div class="jumbotron">
+                        <div class="support">
+                            <p>
+                                <a id="convertImage" class="btn btn-large btn-big btn-success" href="#/"><i class="icon-camera"></i> Create pattern from picture</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="jumbotron">
+                        <p class="lead">
+                            <a class="social" href="https://twitter.com/MiroslavMagda"><i class="icon-twitter icon-large"></i></a>
+                            <a class="social" href="http://www.linkedin.com/pub/miroslav-magda/23/3aa/bb0"><i class="icon-linkedin icon-large"></i></a>
+                            <a class="social" href="https://plus.google.com/105961076833051966371"><i class="icon-google-plus icon-large"></i></a>
+                        </p>
+                        <p class="muted">
+                            <small>&copy; <a href="http://ejci.net">Miroslav Magda</a> 2013</small>
+                        </p>
+                    </div>
+                </div>
+                <!-- FAQ content -->
+                <div class="content-pattern">
+                    <div class="jumbotron" id="sharedCanvasContainer">
+                        <div id="sharedCanvas">
+                            <i class="icon-spinner icon-spin icon-4x"></i>
+                            <h4>Loading pattern...</h4>
+                        </div>
+                        <div id="sharedCanvasMeta">
+                            <p id="sharedCanvasInfo"></p>
+                            <button class="btn btn-result btn-success" id="buttonDownloadShared">
+                                <i class="icon-save"></i> Download Image
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- FAQ content -->
+                <div class="content-faq">
+                    <h1>Frequently asked questions</h1>
+                    <h3>How to use it?</h3>
+                    <p class="lead">
+                        Press the button, choose the picture and wait for magic.
+                        If you are not happy with the results you can change the resolution or color palette.
+
+                    </p>
+                    <h3>Why this app?</h3>
+                    <p class="lead">
+                        All <del>bad</del> good ideas are born in the pub.
+                        My good friend after few beers asked me if I can create mobile app that will convert picture from camera to cross stitch pattern.
+                        <br>
+                        So I said, <em><del>"Go home. You Are drunk!</del> Brilliant idea! I will give You 10% of all the money i make from such app".</em>
+                    </p>
+                    <h3>Is there a mobile version of this app?</h3>
+                    <p class="lead">
+                        Yes there is. Just visit this site with your mobile device and you can make cross stitch patterns directly from your camera.
+                    </p>
+                    <h3>Why it is'nt working on my Internet Explorer?</h3>
+                    <p class="lead">
+                        Because this application is using HTML5 fetaures that doesn't work on Internet Explorer.
+                        <br>
+                        <small>Thre truth is that I was lazy to make it work on Internet Explorer. Sometimes it is really painfull to make things work on Internet Explorer. This is a project only for <a href="http://www.youtube.com/watch?v=zDn5IlHqlA4" target="_blank">fun</a> so I tried not to kill fun with painfull Internet Explorer compatibilty.</small>
+                    </p>
+                    <h3>Will it work on Internet Explorer in the future?</h3>
+                    <p class="lead">
+                        Definitely, maybe.
+                    </p>
+
+                    <h3>This application is rubish! Is there any other app that does the same?</h3>
+                    <p class="lead">
+                        No! <a href="http://lmgtfy.com/?q=image+to+cross+stitch">Definitely isn't</a>.
+                    </p>
+                    <p class="disclaimer">
+                        <strong>Disclaimer</strong>
+                        <br>
+                        This are not frequently asked questions. To be honest nobody asked me any question. I just made all the questions up :(
+                    </p>
+                </div>
+                <!-- Contact content -->
+                <div class="content-contact">
+                    <h1>Contact</h1>
+                    <p class="lead">
+                        Feel free to ask any questions or propose improvements. Just be nice.
+                    </p>
+                    <p>
+                        <input id="messageSubject" class="input-xxlarge" type="text" placeholder="Subject">
+                        <textarea id="messageBody" class="input-xxlarge" placeholder="Your question" rows="10"></textarea>
+                        <br />
+                        <a class="btn" id="sendMessage">Send message</a>
+                    </p>
+                    <p>
+                        You can find me also on <a href="https://twitter.com/MiroslavMagda">Twitter</a>, <a href="https://plus.google.com/105961076833051966371">Google+</a> or <a href="http://www.linkedin.com/pub/miroslav-magda/23/3aa/bb0">Linkedin</a>.
+                    </p>
+                </div>
+                <!-- Unsuported browser content -->
+                <div class="content-unsuportedBrowser">
+                    <h2>We are sorry :(</h2>
+                    <p>
+                        You are using unsupported browser.
+                        Please use Google's Chrome, Apple's Safari or Mozzila's Firefox browser.
+                    </p>
+                    <p>
+                        <a href="http://www.google.com/chrome"><img class="img" src="/img/browser-icon-chrome-128.png"></a>
+                        <a href="http://www.mozilla.org/firefox"><img class="img" src="/img/browser-icon-safari-128.png"></a>
+                        <a href="http://www.apple.com/safari"><img class="img" src="/img/browser-icon-firefox-128.png"></a>
+                    </p>
+                </div>
+            </div>
+            <!-- ALERT modal-->
+            <div id="modalAlert" class="modal hide fade">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h3></h3>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <a href="#" class="btn" class="close" data-dismiss="modal" aria-hidden="true">Close</a>
+                </div>
+            </div>
+            <!-- OPTIONS modal-->
+            <div id="modalOptions" class="modal hide fade">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h3>Options</h3>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <label class="muted">Number of columns</label>
+                        <input class="input-mini" type="text" name="cols" placeholder="Cols">
+                        <br />
+
+                        <label class="muted">Color palette</label>
+                        <!--span class="color" style="background-color: rgb(255, 146, 180)"></span-->
+
+                        <div id="colors"></div>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" class="close" data-dismiss="modal" aria-hidden="true">
+                        Close
+                    </button>
+                    <button href="#" id="buttonApplyOptions" class="btn btn-success">
+                        Apply
+                    </button>
+                </div>
+            </div>
+            <!-- /container -->
+            <img id="ribbon" class="ribbon" src="/img/ribbon.png"/>
+        </div>
+        <!-- Mobile version -->
+        <div id="app-mobile">
+
+            <!-- PAGE HOME-->
+            <div data-role="page" data-theme="a" id="mobile-home">
+                <div data-role="panel" data-theme="a" data-position="left" data-swipe-close="false"  data-display="overlay" id="optionsPanel">
+                    <h4> Pattern options </h4>
+                    <p>
+                        <label for="cols">Columns:</label>
+                        <input type="range" name="cols" min="10" max="100" value="50">
+                    </p>
+                    <p>
+
+                        <fieldset data-role="controlgroup"  id="colorsMobile">
+                            <legend>
+                                Color palette:
+                            </legend>
+                        </fieldset>
+                    </p>
+                    <a href="#" data-role="button" data-icon="check"  data-theme="b" id="buttonApplyOptionsMobile">Apply</a>
+                    <a href="#" data-role="button"data-icon="delete" data-rel="close" data-theme="a" id="buttonCloseOptionsMobile">Close</a>
+                </div><!-- /panel -->
+                <div data-role="header">
+                    <h1>iStitch App</h1>
+                </div>
+                <div data-role="content">
+                    <div class="marketingMobile center" id="marketingMobile">
+                        <div class="examples" style="display:none;">
+                            <img class="example1" style="" src="/img/background-html5.png">
+                            <img class="example2" style="display:none;" src="/img/background-reddit.png">
+                            <img class="example3" style="display:none;" src="/img/background-tiger.png">
+                        </div>
+                        <h2>Picture to cross stitch converter</h2>
+                        <p>
+                            Convert any picture to cross stitch pattern with one click.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="ios">
+                            <a href="#" data-role="button" data-icon="plus" data-theme="b" id="convertMobileImage">Convert picture</a>
+                        </div>
+                        <div class="otherOs">
+                            <!--<input id="inputMobileFile" type="file" accept="image/*;capture=camera" capture="camera"/>-->
+                            <input id="inputMobileFile" type="file" accept="image/*" capture/>
+                        </div>
+                        <div class="unsuportedOs marketing">
+                            <h3><strong>We are sorry :(</strong></h3>
+                            <p>
+                                You are using unsupported browser.
+                            </p>
+                        </div>
+                    </div>
+                    <div id="resultMobile">
+                        <fieldset class="ui-grid-a">
+                            <div class="ui-block-a">
+                                <a href="#" data-role="button" data-icon="gear" data-theme="a" id="buttonOptionsMobile">Options</a>
+                            </div>
+                            <div class="ui-block-b">
+                                <a href="#" data-role="button"data-icon="check" data-theme="a" id="buttonSaveMobile">Save</a>
+                            </div>
+                        </fieldset>
+                        <a href="#" data-role="button"data-icon="check" data-theme="a" id="buttonShareMobile">Share</a>
+                        <div id="resultCanvasShareMobile" class="center">
+                            <label for="text-1">URL for sharing</label>
+                            <input type="text" name="shareUrl" value="" placeholder="Sharing URL">
+                            <small>Copy the link and share with your friends</small>
+                        </div>
+                        <div id="resultCanvasMobile" class="center"></div>
+                        <div id="resultCanvasInfoMobile" class="center"></div>
+                        <a href="#" data-role="button" data-theme="a" id="buttonShareMobile">Share</a>
+                    </div>
+                    <div data-role="controlgroup" style="margin-top: 30px; margin-bottom: 30px;">
+                        <a href="#mobile-faq" data-role="button">FAQ</a>
+                        <a href="#mobile-contact" data-role="button">Contact</a>
+                    </div>
+                    <hr>
+                    <p class="center">
+                        <small>&copy; <a href="http://ejci.net">Miroslav Magda</a> 2013</small>
+                    </p>
+                </div><!-- /content -->
+            </div>
+            <div data-role="page" id="mobile-share">
+                <div data-role="header">
+                    <a href="#mobile-home" data-theme="a" data-icon="home" data-iconpos="notext" data-inline="true"></a>
+                    <h1>iStitch App</h1>
+                </div>
+                <div data-role="content" class="content">
+                    <div id="sharedCanvasMobile" class="center">
+                        <h4>Loading pattern...</h4>
+                    </div>
+                    <div id="sharedCanvasMetaMobile" class="center">
+                        <p id="sharedCanvasInfoMobile" class="center"></p>
+                        <a href="#" data-role="button"data-icon="check" data-theme="a" id="buttonSaveShareMobile">Save</a>
+                    </div>
+                </div>
+            </div>
+            <!-- PAGE DAQ-->
+            <div data-role="page" id="mobile-faq">
+                <div data-role="header">
+                    <a href="#mobile-home" data-theme="a" data-icon="home" data-iconpos="notext" data-inline="true"></a>
+                    <h1>iStitch App</h1>
+                </div>
+                <div data-role="content" class="content">
+
+                </div>
+            </div>
+            <!-- PAGE CONTACT-->
+            <div data-role="page" id="mobile-contact">
+                <div data-role="header">
+                    <a href="#mobile-home" data-theme="a" data-icon="home" data-iconpos="notext" data-inline="true"></a>
+                    <h1>iStitch App</h1>
+                </div>
+                <div data-role="content" class="content">
+                    <p>
+                        <input id="messageSubjectMobile" class="input-xxlarge" type="text" placeholder="Subject">
+                        <textarea id="messageBodyMobile" class="input-xxlarge" placeholder="Your question" rows="10"></textarea>
+                        <button  data-role="button" data-theme="a" class="btn" id="sendMessageMobile">
+                            Send message
+                        </button>
+                    </p>
+                    <p>
+                        You can find me also on <a href="https://twitter.com/MiroslavMagda">Twitter</a>, <a href="https://plus.google.com/105961076833051966371">Google+</a> or <a href="http://www.linkedin.com/pub/miroslav-magda/23/3aa/bb0">Linkedin</a>.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <!-- Loading page -->
+        <div id="app-loader">
+            <img src="/img/ajax-loader.gif"/>
+            <div>
+                Loading application...
+            </div>
+            <span class="error"></span>
+        </div>
+        <!-- Temp components -->
+        <div id="app-temp">
+            <img id="imageTemp"/>
+            <img id="image"/>
+            <canvas id="canvas"></canvas>
+            <a id="download" href="" download="export.png">export</a>
+            <input type="file" id="inputFile" accept="image/*;capture=camera" capture="camera"/>
+            <form id="downloadForm"  target="_blank" action="/download" method="post">
+                <input name="image" type="text" value=""/>
+            </form>
+        </div>
+        <!--scripts -->
+        <script src="js/loader.js"></script>
+    </body>
+</html>

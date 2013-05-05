@@ -1,0 +1,75 @@
+body {
+	padding-top: 20px;
+	padding-bottom: 40px;
+	/*background-image:url('/img/background.png');
+	 background-repeat:no-repeat;
+	 background-attachment:fixed;
+	 background-position:center;*/
+}
+/* Custom container */
+.container-narrow {
+	margin: 0 auto;
+	max-width: 800px;
+}
+.container-narrow > hr {
+	margin: 30px 0;
+}
+/* Main marketing message and sign up button */
+.jumbotron {
+	margin: 20px 0;
+	text-align: center;
+}
+.jumbotron h1 {
+	font-size: 72px;
+	line-height: 1;
+}
+.jumbotron .btn-big {
+	font-size: 21px;
+	padding: 14px 24px;
+}
+.jumbotron .btn-result {
+	width: 206px;
+	font-weight: bold;
+}
+.ribbon {
+	position: absolute;
+	top: -224px;
+	right: 5px;
+	z-index: 1;
+}
+.content-home, .content-faq, .content-contact, .content-unsuportedBrowser, .content-pattern {
+	display: none;
+}
+.disclaimer {
+	font-size: 12px;
+}
+.masthead .brand {
+	color: #0088cc;
+}
+.masthead .brand:hover {
+	color: #1199dd;
+	text-decoration: none;
+}
+.social {
+	color: #cccccc;
+}
+.social:hover {
+	color: #1199dd;
+	text-decoration: none;
+}
+.color {
+	width: 10px;
+	display: inline-block;
+	height: 10px;
+	border: 1px solid #eee;
+	margin: 1px;
+}
+#examples {
+	height: 230px;
+}
+#resultCanvasShare {
+	display: none;
+}
+#sharedCanvasMeta {
+	display: none;
+}

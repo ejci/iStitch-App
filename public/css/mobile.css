@@ -1,0 +1,42 @@
+.examples {
+	text-align: center;
+}
+.examples img {
+	max-width: 200px;
+	max-height: 200px;
+	border-radius: 200px;
+	box-shadow: 0 0 5px #888;
+}
+.marketing {
+	width: 100%;
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+}
+.center {
+	text-align: center;
+}
+.otherOs, .unsuportedOs, .ios {
+	display: none;
+}
+#resultMobile {
+	display: none;
+}
+.color {
+	width: 10px;
+	display: inline-block;
+	height: 10px;
+	border: 1px solid #eee;
+	margin: 1px;
+}
+#inputFile, #canvas {
+	display: none;
+}
+#resultCanvasShareMobile {
+	display: none;
+}
+#sharedCanvasMetaMobile {
+	display: none;
+}
+#resultCanvasShareMobile {
+	display: none;
+}
