@@ -1,7 +1,7 @@
 iStitch App
 =======
 
-Picture to cross stitch converter ([www.istitchapp.com](http://istitchapp.com).
+Picture to cross stitch converter ([www.istitchapp.com](http://istitchapp.com)).
 
 
 Author: [Miroslav Magda](http://ejci.net)
